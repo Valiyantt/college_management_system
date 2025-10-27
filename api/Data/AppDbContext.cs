@@ -11,6 +11,9 @@ namespace college_management_system.Data
     public DbSet<Student> Students { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
+    public DbSet<EnrollmentRecord> EnrollmentRecords { get; set; }
+    public DbSet<RequirementDocument> RequirementDocuments { get; set; }
+    public DbSet<Schedule> Schedules { get; set; }
     public DbSet<Payment> Payments { get; set; }
     }
 }
