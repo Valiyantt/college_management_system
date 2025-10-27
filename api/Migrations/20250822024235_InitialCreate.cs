@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace api.Migrations
+namespace college_management_system.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

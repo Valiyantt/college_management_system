@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using api.Data;
+using college_management_system.Data;
 
 #nullable disable
 
-namespace api.Migrations
+namespace college_management_system.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250822024235_InitialCreate")]
