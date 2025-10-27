@@ -66,10 +66,10 @@ namespace college_management_system.Controllers
 
     public class ExamLoginRequest
     {
-        public string ExamCredentials { get; set; }
+        public required string ExamCredentials { get; set; }
     }
     public class ExamSubmission
     {
-        public string Result { get; set; }
+        public required string Result { get; set; }
     }
 }

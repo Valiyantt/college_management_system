@@ -79,7 +79,7 @@ namespace college_management_system.Controllers
 
     public class EmailVerificationRequest
     {
-        public string Email { get; set; }
-        public string OTP { get; set; }
+        public required string Email { get; set; }
+        public required string OTP { get; set; }
     }
 }

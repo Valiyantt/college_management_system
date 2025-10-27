@@ -47,7 +47,7 @@ namespace college_management_system.Controllers
         // 25. Program Chair: Assign schedule
         [HttpPost("assign-schedule/{studentId}")]
         [Authorize(Roles = "ProgramChair")]
-        public async Task<IActionResult> AssignSchedule(int studentId, [FromBody] string schedule)
+        public IActionResult AssignSchedule(int studentId, [FromBody] string schedule)
         {
             // In a real system, you would save the schedule to the DB
             // For now, just simulate

@@ -1,5 +1,6 @@
 
 using Microsoft.OpenApi.Models;
+using college_management_system.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -33,9 +34,12 @@ builder.Services.AddAuthorization();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "college_management_system API", Version = "v1" });
+});
 builder.Services.AddControllers();
-builder.Services.AddDbContext<college_management_system.Data.AppDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
