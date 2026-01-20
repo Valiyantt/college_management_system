@@ -35,31 +35,73 @@ export default function App() {
   useEffect(() => { load() }, [])
 
   const handleSave = async (addr) => {
-    if (addr.id) {
-      await fetch(`${API}/api/addresses/${addr.id}`, {
-        method: 'PUT',
+    try {
+      const method = addr.id ? 'PUT' : 'POST'
+      const url = addr.id ? `${API}/api/addresses/${addr.id}` : `${API}/api/addresses`
+      
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(addr)
       })
-    } else {
-      await fetch(`${API}/api/addresses`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(addr)
-      })
+      
+      if (!res.ok) throw new Error('Failed to save address')
+      
+      success(addr.id ? 'Address updated successfully' : 'Address created successfully')
+      setEditing(null)
+      await load()
+    } catch (err) {
+      error(err.message || 'Failed to save address')
     }
-    setEditing(null)
-    await load()
   }
 
   const handleDelete = async (id) => {
-    if (!confirm('Delete address?')) return
-    await fetch(`${API}/api/addresses/${id}`, { method: 'DELETE' })
-    await load()
+    const addr = addresses.find(a => a.id === id || a.Id === id)
+    setDeleteConfirm({ 
+      id, 
+      name: `${addr?.streetName || addr?.StreetName || ''}, ${addr?.city || addr?.City || ''}` 
+    })
+  }
+
+  const confirmDelete = async () => {
+    try {
+      const res = await fetch(`${API}/api/addresses/${deleteConfirm.id}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error('Failed to delete address')
+      success('Address deleted successfully')
+      await load()
+    } catch (err) {
+      error(err.message || 'Failed to delete address')
+    } finally {
+      setDeleteConfirm(null)
+    }
   }
 
   return (
     <div className="container">
+      <div className="toast-container">
+        {toasts.map(t => (
+          <Toast 
+            key={t.id} 
+            message={t.message} 
+            type={t.type} 
+            duration={t.duration}
+            onClose={() => removeToast(t.id)} 
+          />
+        ))}
+      </div>
+
+      {deleteConfirm && (
+        <ConfirmDialog
+          title="Delete Address"
+          message={`Are you sure you want to delete the address at ${deleteConfirm.name}? This action cannot be undone.`}
+          onConfirm={confirmDelete}
+          onCancel={() => setDeleteConfirm(null)}
+          confirmText="Delete"
+          cancelText="Cancel"
+          isDangerous={true}
+        />
+      )}
+
       <header className="app-header">
         <div className="brand">
           <div className="logo">CMS</div>
@@ -69,9 +111,9 @@ export default function App() {
           </div>
         </div>
         <nav style={{display:'flex',gap:8}}>
-          <button className="btn btn-ghost" onClick={() => setView('addresses')}>Addresses</button>
-          <button className="btn btn-ghost" onClick={() => setView('enroll-student')}>Enrollment (Student)</button>
-          <button className="btn btn-ghost" onClick={() => setView('enroll-admin')}>Enrollment (Admin)</button>
+          <button className="btn btn-ghost" onClick={() => setView('addresses')} aria-label="View addresses">Addresses</button>
+          <button className="btn btn-ghost" onClick={() => setView('enroll-student')} aria-label="Student enrollment">Enrollment (Student)</button>
+          <button className="btn btn-ghost" onClick={() => setView('enroll-admin')} aria-label="Admin enrollment">Enrollment (Admin)</button>
         </nav>
       </header>
 
@@ -85,7 +127,11 @@ export default function App() {
               <h2 style={{margin:0}}>Addresses</h2>
               <div className="muted">{addresses.length} records</div>
             </div>
-            <AddressList addresses={addresses} onEdit={(a) => setEditing(a)} onDelete={handleDelete} />
+            {loading ? (
+              <LoadingSpinner text="Loading addresses..." />
+            ) : (
+              <AddressList addresses={addresses} onEdit={(a) => setEditing(a)} onDelete={handleDelete} />
+            )}
           </div>
         </div>
       )}
