@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0FmmLl59Nmo=",
+  "dgSpecHash": "xmPcmqZcruQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gigabyte\\OneDrive - Saint Michael's College of Laguna\\Documents\\OJT\\Basic CRUD\\api\\college_management_system.csproj",
+  "projectFilePath": "C:\\Users\\Gigabyte\\Documents\\GitHub\\college_management_system\\api\\college_management_system.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gigabyte\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Gigabyte\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.8\\microsoft.aspnetcore.authentication.jwtbearer.9.0.8.nupkg.sha512",

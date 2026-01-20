@@ -3861,11 +3861,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Gigabyte\\OneDrive - Saint Michael's College of Laguna\\Documents\\OJT\\Basic CRUD\\api\\college_management_system.csproj",
+      "projectUniqueName": "C:\\Users\\Gigabyte\\Documents\\GitHub\\college_management_system\\api\\college_management_system.csproj",
       "projectName": "college_management_system",
-      "projectPath": "c:\\Users\\Gigabyte\\OneDrive - Saint Michael's College of Laguna\\Documents\\OJT\\Basic CRUD\\api\\college_management_system.csproj",
+      "projectPath": "C:\\Users\\Gigabyte\\Documents\\GitHub\\college_management_system\\api\\college_management_system.csproj",
       "packagesPath": "C:\\Users\\Gigabyte\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Gigabyte\\OneDrive - Saint Michael's College of Laguna\\Documents\\OJT\\Basic CRUD\\api\\obj\\",
+      "outputPath": "C:\\Users\\Gigabyte\\Documents\\GitHub\\college_management_system\\api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
