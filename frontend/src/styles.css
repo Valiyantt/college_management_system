@@ -62,3 +62,83 @@ header.app-header{display:flex;align-items:center;justify-content:space-between;
 
 .card-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 
+/* Toast notifications */
+.toast-container{position:fixed;bottom:20px;right:20px;z-index:1000;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{
+	display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);
+	background:#fff;color:#0f172a;font-size:14px;pointer-events:auto;animation:slideInRight 0.3s ease-out;
+	min-width:300px;max-width:500px
+}
+.toast-icon{font-weight:700;font-size:16px}
+.toast-success{border-left:4px solid #10b981}
+.toast-success .toast-icon{color:#10b981}
+.toast-error{border-left:4px solid #ef4444}
+.toast-error .toast-icon{color:#ef4444}
+.toast-warning{border-left:4px solid #f59e0b}
+.toast-warning .toast-icon{color:#f59e0b}
+.toast-info{border-left:4px solid #3b82f6}
+.toast-info .toast-icon{color:#3b82f6}
+.toast-message{flex:1}
+.toast-close{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+.toast-close:hover{color:#0f172a}
+
+@keyframes slideInRight{
+	from{transform:translateX(400px);opacity:0}
+	to{transform:translateX(0);opacity:1}
+}
+
+/* Modal/Dialog */
+.modal-overlay{
+	position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.5);
+	display:flex;align-items:center;justify-content:center;z-index:999;
+}
+.modal-content{
+	background:#fff;border-radius:12px;padding:32px;max-width:400px;box-shadow:0 20px 50px rgba(0,0,0,0.15);
+	animation:slideUp 0.3s ease-out
+}
+.modal-title{margin:0 0 12px 0;font-size:18px;font-weight:600}
+.modal-message{margin:0 0 24px 0;color:var(--muted);line-height:1.5}
+.modal-buttons{display:flex;gap:10px;justify-content:flex-end}
+
+@keyframes slideUp{
+	from{transform:translateY(20px);opacity:0}
+	to{transform:translateY(0);opacity:1}
+}
+
+/* Loading spinner */
+.loading-container{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:16px}
+.spinner{
+	width:40px;height:40px;border:4px solid #e6e9ee;border-top-color:var(--accent-600);
+	border-radius:50%;animation:spin 1s linear infinite
+}
+
+@keyframes spin{
+	to{transform:rotate(360deg)}
+}
+
+/* Form improvements */
+.field.error input,.field.error select{border-color:#ef4444;background:#fef2f2}
+.field.error input:focus,.field.error select:focus{box-shadow:0 4px 18px rgba(239,68,68,0.12);border-color:#ef4444}
+.field-error{color:#ef4444;font-size:12px;margin-top:4px}
+.field-success input,.field-success select{border-color:#10b981;background:#f0fdf4}
+
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+
+.btn-danger{background:#ef4444;color:#fff;box-shadow:0 8px 20px rgba(239,68,68,0.12)}
+.btn-danger:hover:not(:disabled){background:#dc2626}
+
+/* Keyboard focus improvements */
+.btn:focus-visible,.field input:focus-visible,.field select:focus-visible{outline:2px solid var(--accent-600);outline-offset:2px}
+
+/* Table hover effects */
+.address-table tbody tr:hover{background:linear-gradient(180deg, rgba(14,165,164,0.05), rgba(14,165,164,0.08))}
+
+/* Improved form spacing */
+.address-form{padding:4px}
+.field:first-child{margin-top:0}
+
+/* Better button spacing in forms */
+.buttons button:hover{background:opacity}
+.buttons button + button{margin-left:8px}
+

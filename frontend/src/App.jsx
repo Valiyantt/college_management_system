@@ -3,6 +3,10 @@ import AddressForm from './components/AddressForm'
 import AddressList from './components/AddressList'
 import EnrollmentStudent from './pages/EnrollmentStudent'
 import EnrollmentAdmin from './pages/EnrollmentAdmin'
+import Toast from './components/Toast'
+import ConfirmDialog from './components/ConfirmDialog'
+import LoadingSpinner from './components/LoadingSpinner'
+import { useToast } from './hooks/useToast'
 
 const API = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
@@ -10,11 +14,22 @@ export default function App() {
   const [addresses, setAddresses] = useState([])
   const [editing, setEditing] = useState(null)
   const [view, setView] = useState('addresses')
+  const [loading, setLoading] = useState(false)
+  const [deleteConfirm, setDeleteConfirm] = useState(null)
+  const { toasts, removeToast, success, error } = useToast()
 
   const load = async () => {
-    const res = await fetch(`${API}/api/addresses`)
-    const data = await res.json()
-    setAddresses(data)
+    setLoading(true)
+    try {
+      const res = await fetch(`${API}/api/addresses`)
+      if (!res.ok) throw new Error('Failed to load addresses')
+      const data = await res.json()
+      setAddresses(data)
+    } catch (err) {
+      error(err.message || 'Failed to load addresses')
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => { load() }, [])
